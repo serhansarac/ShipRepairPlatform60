@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\core",
+    "\\core\\templates",
+    "\\core\\templates\\core",
+    "\\ml_models",
+    "\\ShipRepairPlatform60"
+  ],
+  "SelectedNode": "\\core\\views.py",
+  "PreviewInSolutionExplorer": false
+}

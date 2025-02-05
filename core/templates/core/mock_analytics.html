@@ -1,0 +1,47 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Mock Analytics{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">Mock Analytics Dashboard</h1>
+
+<h2>Page Visits</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Page</th>
+            <th>Visit Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for visit in page_visits %}
+        <tr>
+            <td>{{ visit.page_name }}</td>
+            <td>{{ visit.visit_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Events</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Occurrences</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.event_name }}</td>
+            <td>{{ event.event_count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p><strong>Total Visits:</strong> {{ total_visits }}</p>
+<p><strong>Total Events:</strong> {{ total_events }}</p>
+{% endblock %}
+

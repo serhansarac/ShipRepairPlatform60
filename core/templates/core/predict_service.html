@@ -1,0 +1,42 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Predict Service{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">Service Time and Cost Prediction</h1>
+<form method="POST" id="predict-form" class="text-center">
+    {% csrf_token %}
+    <input type="text" name="service_name" placeholder="Enter Service Name" class="form-control mb-3" required>
+    <input type="number" name="complexity" placeholder="Enter Complexity (1-10)" class="form-control mb-3" required>
+    <button type="submit" class="btn btn-primary">Predict</button>
+</form>
+
+<div id="prediction-result" class="mt-5 text-center" style="display: none;">
+    <h2>Prediction Results</h2>
+    <p><strong>Service Name:</strong> <span id="predicted-service"></span></p>
+    <p><strong>Estimated Time:</strong> <span id="predicted-time"></span> hours</p>
+    <p><strong>Estimated Cost:</strong> $<span id="predicted-cost"></span></p>
+</div>
+
+<script>
+    document.getElementById("predict-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        fetch("{% url 'predict_service' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRFToken": "{{ csrf_token }}",
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                document.getElementById("prediction-result").style.display = "block";
+                document.getElementById("predicted-service").textContent = data.service_name;
+                document.getElementById("predicted-time").textContent = data.estimated_time;
+                document.getElementById("predicted-cost").textContent = data.estimated_cost;
+            });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,67 @@
+﻿{% extends 'base.html' %}
+/* eslint-disable */
+{% block title %}Analytics{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">Platform Analytics</h1>
+
+<h2>Payment Volume</h2>
+<canvas id="paymentVolumeChart" style="max-width: 600px; max-height: 400px; margin: 0 auto;"></canvas>
+
+<h2 class="mt-4">Customer Satisfaction</h2>
+<canvas id="customerSatisfactionChart" style="max-width: 600px; max-height: 400px; margin: 0 auto;"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx1 = document.getElementById('paymentVolumeChart').getContext('2d');
+    const paymentVolumeChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: {{ months|safe }},
+            datasets: [{
+                label: 'Payment Volume',
+                data: {{ payment_data|safe }},
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('customerSatisfactionChart').getContext('2d');
+    const customerSatisfactionChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Satisfied', 'Neutral', 'Unsatisfied'],
+            datasets: [{
+                label: 'Customer Satisfaction',
+                data: {{ satisfaction_data|safe }},
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+{% endblock %}

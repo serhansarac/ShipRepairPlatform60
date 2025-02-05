@@ -1,0 +1,26 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Repair Companies{% endblock %}
+
+{% block content %}
+<h1 class="text-center my-4">Repair Companies</h1>
+<div class="row">
+    {% for company in companies %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ company.name }}</h5>
+                <p class="card-text">{{ company.description }}</p>
+                <p><strong>Email:</strong> {{ company.contact_email }}</p>
+                {% if company.phone_number %}
+                <p><strong>Phone:</strong> {{ company.phone_number }}</p>
+                {% endif %}
+                {% if company.address %}
+                <p><strong>Address:</strong> {{ company.address }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
