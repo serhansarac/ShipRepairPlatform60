@@ -16,4 +16,3 @@ urlpatterns = [
     path('mock-analytics/', views.mock_analytics, name='mock_analytics'),
     path("predict-service/", views.predict_service, name="predict_service"),
 ]
-
