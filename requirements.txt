@@ -24,3 +24,4 @@ weasyprint
 cairocffi
 gunicorn
 WeasyPrint
+WeasyPrint
