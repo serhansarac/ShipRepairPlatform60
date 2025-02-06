@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',  # Core uygulamasý eklendi
+    'core',  # Core uygulamasï¿½ eklendi
 ]
 
 MIDDLEWARE = [
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'ShipRepairPlatform60.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'core' / 'templates'],  # Genel ve uygulama bazlý template desteði
+        'DIRS': [BASE_DIR / 'core' / 'templates'],  # Genel ve uygulama bazlï¿½ template desteï¿½i
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
