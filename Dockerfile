@@ -6,7 +6,7 @@ WORKDIR /app
 
 # 3. Sistemde gerekli bağımlılıkları yükle (Aptfile'ı kullanarak)
 COPY Aptfile /Aptfile
-RUN apt-get update && xargs apt-get install -y < /Aptfile
+RUN apt-get update && cat /Aptfile | xargs apt-get install -y --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 # 4. Gerekli Python bağımlılıklarını yükle
 COPY requirements.txt /app/requirements.txt
