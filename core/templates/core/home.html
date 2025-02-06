@@ -9,45 +9,51 @@
 </div>
 <div class="container">
     <div class="row">
-        <!-- Column 1: Ship Repair Platform Admin Services -->
-        <div class="col-md-4">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <!-- Admin Services (Smaller, Moved More Right & Up) -->
+        <div class="col-md-2 offset-md-10" style="position: absolute; top: 10px; right: 10px; width: 200px;">
+            <div class="card shadow-lg p-2 mb-3 bg-white rounded">
                 <div class="card-body">
-                    <h3 class="text-center">Admin Services</h3>
+                    <h6 class="text-center">Admin Services</h6>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="{% url 'admin:index' %}" class="btn btn-secondary w-100">Admin Panel</a></li>
-                        <li class="list-group-item"><a href="{% url 'payment_page' %}" class="btn btn-success w-100">Payment</a></li>
-                        <li class="list-group-item"><a href="{% url 'payment_history' %}" class="btn btn-warning w-100">Payment History</a></li>
-                        <li class="list-group-item"><a href="{% url 'admin_dashboard' %}" class="btn btn-primary w-100">Admin Dashboard</a></li>
-                        <li class="list-group-item"><a href="{% url 'analytics' %}" class="btn btn-info w-100">Analytics</a></li>
-                        <li class="list-group-item"><a href="{% url 'mock_analytics' %}" class="btn btn-warning w-100">Mock Analytics</a></li>
+                        <li class="list-group-item p-1"><a href="{% url 'admin:index' %}" class="btn btn-secondary btn-sm w-100">Admin Panel</a></li>
+                        <li class="list-group-item p-1"><a href="{% url 'payment_page' %}" class="btn btn-success btn-sm w-100">Payment</a></li>
+                        <li class="list-group-item p-1"><a href="{% url 'payment_history' %}" class="btn btn-warning btn-sm w-100">Payment History</a></li>
+                        <li class="list-group-item p-1"><a href="{% url 'admin_dashboard' %}" class="btn btn-primary btn-sm w-100">Admin Dashboard</a></li>
+                        <li class="list-group-item p-1"><a href="{% url 'analytics' %}" class="btn btn-info btn-sm w-100">Analytics</a></li>
+                        <li class="list-group-item p-1"><a href="{% url 'mock_analytics' %}" class="btn btn-warning btn-sm w-100">Mock Analytics</a></li>
+                        <li class="list-group-item p-1"><a href="{% url 'invoice' %}" class="btn btn-info btn-sm w-100">Generate Invoice</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Column 2: Ship Operators Services -->
-        <div class="col-md-4">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                <div class="card-body">
-                    <h3 class="text-center">Ship Operators</h3>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="{% url 'repair_companies' %}" class="btn btn-primary w-100">Repair Companies</a></li>
-                        <li class="list-group-item"><a href="{% url 'compare_services' %}" class="btn btn-success w-100">Compare Services</a></li>
-                        <li class="list-group-item"><a href="{% url 'predict_service' %}" class="btn btn-danger w-100">Predict Service</a></li>
-                    </ul>
+        <!-- Main Content: Ship Operators & Repair Providers (Centered) -->
+        <div class="col-md-8 offset-md-2">
+            <div class="row">
+                <!-- Ship Operators Services -->
+                <div class="col-md-6">
+                    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <h3 class="text-center">Ship Operators</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><a href="{% url 'repair_companies' %}" class="btn btn-primary w-100">Repair Companies</a></li>
+                                <li class="list-group-item"><a href="{% url 'compare_services' %}" class="btn btn-success w-100">Compare Services</a></li>
+                                <li class="list-group-item"><a href="{% url 'predict_service' %}" class="btn btn-danger w-100">Predict Service</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Column 3: Ship Repair Providers -->
-        <div class="col-md-4">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                <div class="card-body">
-                    <h3 class="text-center">Repair Service Providers</h3>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="/admin/core/companyservice/" class="btn btn-info w-100">Service Entry</a></li>
-                    </ul>
+                <!-- Ship Repair Providers -->
+                <div class="col-md-6">
+                    <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                        <div class="card-body">
+                            <h3 class="text-center">Repair Service Providers</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><a href="/admin/core/companyservice/" class="btn btn-info w-100">Service Entry</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
