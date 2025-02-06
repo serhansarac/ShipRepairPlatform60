@@ -1,8 +1,12 @@
-# Ubuntu tabanlı bir image kullan
+# 1️Ubuntu tabanlı bir image kullan
 FROM ubuntu:latest
 
-# Gerekli sistem kütüphanelerini yükle
+# 2️Gerekli sistem kütüphanelerini yükle
 RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    gunicorn \
     libgobject-2.0-0 \
     libcairo2 \
     libpango-1.0-0 \
@@ -14,17 +18,20 @@ RUN apt-get update && apt-get install -y \
     libxml2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Python ve gerekli araçları yükle
-RUN apt-get update && apt-get install -y python3 python3-pip python3-venv gunicorn
-
-# Çalışma dizini oluştur ve dosyaları kopyala
+# 3️Çalışma dizini oluştur ve dosyaları kopyala
 WORKDIR /app
 COPY . /app/
 
-# Virtual environment oluştur ve bağımlılıkları yükle
+# 4️Virtual environment oluştur ve bağımlılıkları yükle
 RUN python3 -m venv venv
 RUN . venv/bin/activate && pip install --no-cache-dir -r requirements.txt
 
-# Port ve çalıştırma komutu
+# 5️Django migration işlemlerini çalıştır
+RUN . venv/bin/activate && python manage.py migrate
+
+# 6️Statik dosyaları toplamak için
+RUN . venv/bin/activate && python manage.py collectstatic --noinput
+
+# 7️Port ve çalıştırma komutu
 EXPOSE 8000
 CMD ["bash", "start.sh"]
