@@ -41,7 +41,7 @@ def charge(request):
 
         request.session['name'] = name
         request.session['email'] = email
-        # Ödeme kaydýný ekleyin
+        # ï¿½deme kaydï¿½nï¿½ ekleyin
         Payment.objects.create(name=name, email=email, amount=10.00)
         return JsonResponse({"status": "success", "message": f"Payment processed for {name} ({email})"})
     return JsonResponse({"status": "error", "message": "Invalid request method"})
@@ -62,7 +62,7 @@ def generate_invoice(request):
     return response
 
 def payment_history(request):
-    payments = Payment.objects.all().order_by('-date')  # Ödemeleri tarihe göre sýrala
+    payments = Payment.objects.all().order_by('-date')  # ï¿½demeleri tarihe gï¿½re sï¿½rala
     return render(request, 'core/payment_history.html', {'payments': payments})
 
 def repair_companies(request):
@@ -70,15 +70,15 @@ def repair_companies(request):
     return render(request, 'core/repair_companies.html', {'companies': companies})
 
 def company_services(request, company_id):
-    # Þirketi alýn
+    # ï¿½irketi alï¿½n
     company = get_object_or_404(RepairCompany, id=company_id)
-    # Þirketin tüm hizmetlerini alýn
+    # ï¿½irketin tï¿½m hizmetlerini alï¿½n
     services = company.services.all()
-    # Þablonu render edin
+    # ï¿½ablonu render edin
     return render(request, 'core/company_services.html', {'company': company, 'services': services})
 
 def compare_services(request):
-    # Tüm hizmetleri veritabanýndan alýn
+    # Tï¿½m hizmetleri veritabanï¿½ndan alï¿½n
     all_services = CompanyService.objects.select_related('company').all()
     return render(request, 'core/compare_services.html', {'services': all_services})
 
@@ -105,7 +105,7 @@ def analytics(request):
     return render(request, 'core/analytics.html', context)
 @staff_member_required
 def admin_dashboard(request):
-    payments = Payment.objects.order_by('-date')[:10]  # Son 10 ödeme
+    payments = Payment.objects.order_by('-date')[:10]  # Son 10 ï¿½deme
     total_payment = Payment.objects.aggregate(Sum('amount'))['amount__sum'] or 0
 
     context = {
