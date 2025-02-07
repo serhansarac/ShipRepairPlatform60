@@ -198,3 +198,6 @@ def predict_service(request):
 
     
     return render(request, "core/predict_service.html")
+
+def documentation(request):
+    return render(request, 'core/documentation.html')

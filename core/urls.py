@@ -15,4 +15,5 @@ urlpatterns = [
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'), 
     path('mock-analytics/', views.mock_analytics, name='mock_analytics'),
     path("predict-service/", views.predict_service, name="predict_service"),
+    path('documentation/', views.documentation, name='documentation'),
 ]
