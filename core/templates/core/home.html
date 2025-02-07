@@ -14,12 +14,12 @@
 <div class="container mt-4">
     <!-- Ship Operators Section (Initially Hidden) -->
     <div id="ship-operators-section" class="toggle-section" style="display: none;">
-        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card shadow-lg p-3 mb-3 bg-white rounded" style="max-width: 300px; margin: auto;">
             <div class="card-body">
-                <h3 class="text-center">Ship Operators</h3>
+                <h5 class="text-center">Ship Operators</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="{% url 'compare_services' %}" class="btn btn-success w-100">Compare Services</a></li>
-                    <li class="list-group-item"><a href="{% url 'predict_service' %}" class="btn btn-danger w-100">Predict Service</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'compare_services' %}" class="btn btn-success btn-sm w-100">Compare Services</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'predict_service' %}" class="btn btn-danger btn-sm w-100">Predict Service</a></li>
                 </ul>
             </div>
         </div>
@@ -27,11 +27,11 @@
 
     <!-- Repair Companies Section (Initially Hidden) -->
     <div id="repair-companies-section" class="toggle-section" style="display: none;">
-        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card shadow-lg p-3 mb-3 bg-white rounded" style="max-width: 300px; margin: auto;">
             <div class="card-body">
-                <h3 class="text-center">Repair Service Providers</h3>
+                <h5 class="text-center">Repair Service Providers</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="/admin/core/companyservice/" class="btn btn-info w-100">Service Entry</a></li>
+                    <li class="list-group-item p-1"><a href="/admin/core/companyservice/" class="btn btn-info btn-sm w-100">Service Entry</a></li>
                 </ul>
             </div>
         </div>
