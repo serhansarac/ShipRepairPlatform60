@@ -8,18 +8,37 @@
 <div class="container text-center">
     <!-- Main Buttons -->
     <button class="btn btn-primary btn-lg m-2" onclick="toggleSection('ship-operators-section')">Ship Operators</button>
-    <button class="btn btn-success btn-lg m-2" onclick="toggleSection('repair-companies-section')">Repair Companies</button>
+    <button class="btn btn-primary btn-lg m-2" onclick="toggleSection('repair-companies-section')">Repair Companies</button>
 </div>
 
-<div class="container mt-4">
+<div class="container">
+    <!-- Admin Section (Initially Hidden) -->
+    <div id="admin-section" class="toggle-section position-absolute" style="display: none; top: 80px; right: 10px; max-width: 300px;">
+        <div class="card shadow-lg p-3 mb-3 bg-white rounded">
+            <div class="card-body">
+                <h5 class="text-center">Admin Services</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-1"><a href="{% url 'admin:index' %}" class="btn btn-secondary btn-sm w-100">Admin Panel</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'payment_page' %}" class="btn btn-secondary btn-sm w-100">Payment</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'payment_history' %}" class="btn btn-secondary btn-sm w-100">Payment History</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'admin_dashboard' %}" class="btn btn-secondary btn-sm w-100">Admin Dashboard</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'analytics' %}" class="btn btn-secondary btn-sm w-100">Analytics</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'mock_analytics' %}" class="btn btn-secondary btn-sm w-100">Mock Analytics</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'invoice' %}" class="btn btn-secondary btn-sm w-100">Generate Invoice</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'repair_companies' %}" class="btn btn-secondary btn-sm w-100">Repair Companies</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <!-- Ship Operators Section (Initially Hidden) -->
     <div id="ship-operators-section" class="toggle-section" style="display: none;">
         <div class="card shadow-lg p-3 mb-3 bg-white rounded" style="max-width: 300px; margin: auto;">
             <div class="card-body">
                 <h5 class="text-center">Ship Operators</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item p-1"><a href="{% url 'compare_services' %}" class="btn btn-success btn-sm w-100">Compare Services</a></li>
-                    <li class="list-group-item p-1"><a href="{% url 'predict_service' %}" class="btn btn-danger btn-sm w-100">Predict Service</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'compare_services' %}" class="btn btn-info btn-sm w-100">Compare Services</a></li>
+                    <li class="list-group-item p-1"><a href="{% url 'predict_service' %}" class="btn btn-primary btn-sm w-100">Predict Service</a></li>
                 </ul>
             </div>
         </div>
@@ -31,7 +50,7 @@
             <div class="card-body">
                 <h5 class="text-center">Repair Service Providers</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item p-1"><a href="/admin/core/companyservice/" class="btn btn-info btn-sm w-100">Service Entry</a></li>
+                    <li class="list-group-item p-1"><a href="/admin/core/companyservice/" class="btn btn-dark btn-sm w-100">Service Entry</a></li>
                 </ul>
             </div>
         </div>
