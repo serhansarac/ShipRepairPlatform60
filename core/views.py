@@ -14,6 +14,7 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from weasyprint import HTML
 from .models import Prediction
+#from .ai_models import time_model, cost_model  # AI modelleri için
 import random  # Mock data for demonstration
 import datetime
 import re
@@ -176,24 +177,24 @@ cost_model = joblib.load('ml_models/cost_model.pkl')
 
 def predict_service(request):
     if request.method == "POST":
-        service_name = request.POST.get("service_name")
-        complexity = float(request.POST.get("complexity"))
+        service_type = request.POST.get("serviceType", "").strip()
+        complexity_value = request.POST.get("complexity", "").strip()
 
-        # Make predictions
-        features = np.array([[complexity]])
-        estimated_time = round(time_model.predict(features)[0], 2)
-        estimated_cost = round(cost_model.predict(features)[0], 2)
+        # Eğer complexity boşsa varsayılan değer ata
+        try:
+            complexity = float(complexity_value) if complexity_value else 1.0
+        except ValueError:
+            complexity = 1.0  # Varsayılan bir değer kullan
 
-        prediction = Prediction.objects.create(
-            service_name=service_name,
-            estimated_time=estimated_time,
-            estimated_cost=estimated_cost,
-        )
-        
-        return JsonResponse({
-            "service_name": service_name,
+        # Burada AI modeli veya tahmin sistemi çalıştırılabilir
+        estimated_time = round(complexity * 2, 2)  # Örnek hesaplama
+        estimated_cost = round(complexity * 1000, 2)  # Örnek hesaplama
+
+        return render(request, "core/predict_service.html", {
             "estimated_time": estimated_time,
             "estimated_cost": estimated_cost,
+            "service_type": service_type
         })
+
     
     return render(request, "core/predict_service.html")

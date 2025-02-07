@@ -3,40 +3,76 @@
 {% block title %}Predict Service{% endblock %}
 
 {% block content %}
-<h1 class="text-center my-4">Service Time and Cost Prediction</h1>
-<form method="POST" id="predict-form" class="text-center">
-    {% csrf_token %}
-    <input type="text" name="service_name" placeholder="Enter Service Name" class="form-control mb-3" required>
-    <input type="number" name="complexity" placeholder="Enter Complexity (1-10)" class="form-control mb-3" required>
-    <button type="submit" class="btn btn-primary">Predict</button>
-</form>
+<h1 class="text-center my-4">Predict Service</h1>
 
-<div id="prediction-result" class="mt-5 text-center" style="display: none;">
-    <h2>Prediction Results</h2>
-    <p><strong>Service Name:</strong> <span id="predicted-service"></span></p>
-    <p><strong>Estimated Time:</strong> <span id="predicted-time"></span> hours</p>
-    <p><strong>Estimated Cost:</strong> $<span id="predicted-cost"></span></p>
+<!-- How It Works? Explanation -->
+<div class="container text-center mb-4">
+    <h5>How It Works?</h5>
+    <p>This AI-powered prediction tool estimates repair time and cost based on historical data and industry trends.</p>
 </div>
 
+<!-- Prediction Form -->
+<div class="container">
+    <form method="post" class="text-center">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="serviceType">Select Service Type</label>
+            <input type="text" id="serviceType" name="serviceType" class="form-control" placeholder="Start typing..." oninput="showSuggestions(this.value)">
+            <div id="suggestions" class="list-group mt-1"></div>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="complexity">Enter Complexity (1-10)</label>
+            <input type="number" id="complexity" name="complexity" class="form-control" min="1" max="10" placeholder="Enter complexity level (default is 1)">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Get Prediction</button>
+    </form>
+</div>
+
+<!-- Prediction Result -->
+{% if estimated_time and estimated_cost %}
+<div class="container mt-4">
+    <div class="alert alert-info text-center">
+        <h5>Prediction Result for {{ service_type }}</h5>
+        <p><strong>Estimated Time:</strong> {{ estimated_time }} hours</p>
+        <p><strong>Estimated Cost:</strong> ${{ estimated_cost }}</p>
+    </div>
+</div>
+{% endif %}
+
+<!-- JavaScript for Autocomplete -->
 <script>
-    document.getElementById("predict-form").addEventListener("submit", function (event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        fetch("{% url 'predict_service' %}", {
-            method: "POST",
-            body: formData,
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "X-CSRFToken": "{{ csrf_token }}",
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                document.getElementById("prediction-result").style.display = "block";
-                document.getElementById("predicted-service").textContent = data.service_name;
-                document.getElementById("predicted-time").textContent = data.estimated_time;
-                document.getElementById("predicted-cost").textContent = data.estimated_cost;
-            });
-    });
+    const services = [
+        "Hull Cleaning", "Engine Repair", "Propeller Maintenance",
+        "Oil Replacement", "Painting", "Deck Repair",
+        "Electrical System Repair", "Navigation System Calibration",
+        "Boiler Maintenance", "Fuel System Optimization"
+    ];
+
+    function showSuggestions(value) {
+        let suggestionsBox = document.getElementById("suggestions");
+        suggestionsBox.innerHTML = "";
+
+        if (value.length === 0) {
+            return;
+        }
+
+        let filtered = services.filter(service => service.toLowerCase().startsWith(value.toLowerCase()));
+
+        filtered.forEach(service => {
+            let item = document.createElement("a");
+            item.href = "#";
+            item.classList.add("list-group-item", "list-group-item-action");
+            item.textContent = service;
+            item.onclick = function () {
+                document.getElementById("serviceType").value = service;
+                suggestionsBox.innerHTML = "";
+            };
+            suggestionsBox.appendChild(item);
+        });
+    }
 </script>
+
 {% endblock %}
