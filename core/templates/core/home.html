@@ -12,25 +12,6 @@
 </div>
 
 <div class="container mt-4">
-    <!-- Admin Section (Initially Hidden) -->
-    <div id="admin-section" class="toggle-section" style="display: none;">
-        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-            <div class="card-body">
-                <h3 class="text-center">Admin Services</h3>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="{% url 'admin:index' %}" class="btn btn-secondary w-100">Admin Panel</a></li>
-                    <li class="list-group-item"><a href="{% url 'payment_page' %}" class="btn btn-success w-100">Payment</a></li>
-                    <li class="list-group-item"><a href="{% url 'payment_history' %}" class="btn btn-warning w-100">Payment History</a></li>
-                    <li class="list-group-item"><a href="{% url 'admin_dashboard' %}" class="btn btn-primary w-100">Admin Dashboard</a></li>
-                    <li class="list-group-item"><a href="{% url 'analytics' %}" class="btn btn-info w-100">Analytics</a></li>
-                    <li class="list-group-item"><a href="{% url 'mock_analytics' %}" class="btn btn-warning w-100">Mock Analytics</a></li>
-                    <li class="list-group-item"><a href="{% url 'invoice' %}" class="btn btn-info w-100">Generate Invoice</a></li>
-                    <li class="list-group-item"><a href="{% url 'repair_companies' %}" class="btn btn-primary btn-sm w-100">Repair Companies</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <!-- Ship Operators Section (Initially Hidden) -->
     <div id="ship-operators-section" class="toggle-section" style="display: none;">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded">
@@ -55,6 +36,14 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Who We Are Section -->
+<div class="container mt-5 text-center">
+    <h2>Who We Are</h2>
+    <p>Ship Repair Platform connects ship operators with top-tier repair service providers, ensuring seamless maintenance solutions.</p>
+    <p>Our platform enables operators to compare repair services and get accurate cost predictions using AI-driven analytics.</p>
+    <p>We streamline the repair process, offering a transparent and efficient way to manage ship maintenance needs worldwide.</p>
 </div>
 
 <!-- JavaScript for Toggle Functionality -->
